@@ -318,6 +318,7 @@ for(let i = 0; i < c.width/res; i++) {
 
 let mean = 0.0;
 let dev = 1.0;
+let colorful_potential = true;
 
 function DrawField(ctx, maxX, maxY) {
     if (showMap) {
@@ -325,18 +326,33 @@ function DrawField(ctx, maxX, maxY) {
             for (let y = 0; y < maxY/res; y++) {
                 let color = field[x][y];
                 color = (color - mean) / (dev*3);
-                // console.log(color);
-                const maxValue = 255 * 3;
-                color *= maxValue/2;
-                color += maxValue/2;
-                // console.log(color);
                 
-                let g = color;
-                let r = color - 255;
-                let b = color - 255*2;
-                let a = 255;
+                if (colorful_potential) {
+                    const maxValue = 255 * 3;
+                    color *= maxValue/2;
+                    color += maxValue/2;
+                    
+                    let g = color;
+                    let r = color - 255;
+                    let b = color - 255*2;
+                    let a = 255;
+
+                    ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+                } else {
+                    const maxValue = 255;
+                    color *= maxValue/2;
+                    color += maxValue/2;
+                    
+                    let g = color;
+                    let r = color;
+                    let b = color;
+                    let a = 255;
+
+                    ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+                }
+                
     
-                ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+               
                 ctx.fillRect( x*res, y*res, res, res )
             }
         }
@@ -417,6 +433,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
     $('#show_map').click(()=>{
         showMap = $('#show_map')[0].checked;
+    })
+
+    $('#colorful_potential').click(()=>{
+        colorful_potential = $('#colorful_potential')[0].checked;
     })
 
     $('#obstacleGain')[0].value = obstacleGain;
