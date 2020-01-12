@@ -66,6 +66,7 @@ let potentials = [
 
 let robotPotential = potentials[1];
 let obstaclePotential = potentials[0];
+let wallPotential = potentials[0];
 
 RandInInterval = (min, max)=>{
     return min + Math.random() * (max-min)
@@ -217,6 +218,7 @@ function UpdateRobot() {
 
 let obstacleGain = 80;
 let destGain = -0.1;
+let wallGain = 3;
 
 function GetFieldValue(x, y) {
     let intensivity = 0.0;
@@ -231,15 +233,14 @@ function GetFieldValue(x, y) {
     intensivity -= destGain * robotPotential.calc(rr2);
 
     // walls potential
-    const wallGain = 3;
     // if (x < 1) {x = 1}
     // if (y < 1) {y = 1}
     // if (x > c.width) {x = c.width - 1}
     // if (y > c.height) {y = c.height - 1}
-    intensivity += obstacleGain * wallGain / x;
-    intensivity += obstacleGain * wallGain / y;
-    intensivity += obstacleGain * wallGain / (c.width - x);
-    intensivity += obstacleGain * wallGain / (c.height - y);
+    intensivity += obstacleGain * wallGain * wallPotential.calc(x*x);
+    intensivity += obstacleGain * wallGain * wallPotential.calc(y*y);
+    intensivity += obstacleGain * wallGain * wallPotential.calc((c.width - x)*(c.width - x));
+    intensivity += obstacleGain * wallGain * wallPotential.calc((c.height - y)*(c.height - y));
 
 
     return intensivity;
@@ -385,6 +386,10 @@ document.addEventListener("DOMContentLoaded", function(){
     $('#destGain').change(()=>{
         destGain = $('#destGain')[0].value;
     })
+
+    $('#wallGain').change(()=>{
+        wallGain = $('#wallGain')[0].value;
+    })
     
     $('#map_gain').change(()=>{
         map_gain = $('#map_gain')[0].value;
@@ -417,10 +422,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     $('#obstacleGain')[0].value = obstacleGain;
     $('#destGain')[0].value = destGain;
+    $('#wallGain')[0].value = wallGain;
 
     for (let i = 0; i < potentials.length; i++) {
         $('#obstacleField').append(`<option value=${i} ${(i==0)?"selected":""}>${potentials[i].name}</option>`);
         $('#robotField').append(`<option value=${i} ${(i==1)?"selected":""}>${potentials[i].name}</option>`);
+        $('#wallField').append(`<option value=${i} ${(i==1)?"selected":""}>${potentials[i].name}</option>`);
     }
 
     $('#obstacleField').change(()=>{
@@ -431,6 +438,11 @@ document.addEventListener("DOMContentLoaded", function(){
     $('#robotField').change(()=>{
         let val = $('#robotField')[0].value;
         robotPotential = potentials[val];
+    })
+
+    $('#wallField').change(()=>{
+        let val = $('#wallField')[0].value;
+        wallPotential = potentials[val];
     })
 });
 
