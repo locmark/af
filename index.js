@@ -248,6 +248,12 @@ let obstacleGain = 3;
 let destGain = 260;
 let wallGain = 10;
 
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+const destinationTrick = 200;
+
 function GetFieldValue(x, y) {
     let intensivity = 0.0;
     obstacles.forEach(obstacle => {
@@ -258,7 +264,7 @@ function GetFieldValue(x, y) {
     });
 
     let rr2 = (destination.pos.x - x)*(destination.pos.x - x) + (destination.pos.y - y)*(destination.pos.y - y);
-    intensivity -= destGain * robotPotential.calc(rr2);
+    intensivity -= destGain * robotPotential.calc(rr2 + destinationTrick*destinationTrick);
 
     // walls potential
     // if (x < 1) {x = 1}
