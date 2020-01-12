@@ -64,9 +64,9 @@ let potentials = [
     }
 ]
 
-let robotPotential = potentials[1];
-let obstaclePotential = potentials[0];
-let wallPotential = potentials[0];
+let robotPotential = potentials[3];
+let obstaclePotential = potentials[3];
+let wallPotential = potentials[3];
 
 RandInInterval = (min, max)=>{
     return min + Math.random() * (max-min)
@@ -244,9 +244,9 @@ function UpdateRobot() {
     
 }
 
-let obstacleGain = 80;
-let destGain = -0.1;
-let wallGain = 3;
+let obstacleGain = 3;
+let destGain = 260;
+let wallGain = 10;
 
 function GetFieldValue(x, y) {
     let intensivity = 0.0;
@@ -473,9 +473,9 @@ document.addEventListener("DOMContentLoaded", function(){
     $('#obstaclesNumber')[0].value = obstacles.length;
 
     for (let i = 0; i < potentials.length; i++) {
-        $('#obstacleField').append(`<option value=${i} ${(i==0)?"selected":""}>${potentials[i].name}</option>`);
-        $('#robotField').append(`<option value=${i} ${(i==1)?"selected":""}>${potentials[i].name}</option>`);
-        $('#wallField').append(`<option value=${i} ${(i==1)?"selected":""}>${potentials[i].name}</option>`);
+        $('#obstacleField').append(`<option value=${i} ${(i==3)?"selected":""}>${potentials[i].name}</option>`);
+        $('#robotField').append(`<option value=${i} ${(i==3)?"selected":""}>${potentials[i].name}</option>`);
+        $('#wallField').append(`<option value=${i} ${(i==3)?"selected":""}>${potentials[i].name}</option>`);
     }
 
     $('#obstacleField').change(()=>{

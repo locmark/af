@@ -1,5 +1,5 @@
 harmoniczny
-1, 260, 10
+3, 260, 10
 
 odwrotnoœæ odleg³oœci, sto¿kowy, sto¿kowy
 80, -0.1, 3
