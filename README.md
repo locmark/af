@@ -8,7 +8,7 @@ https://eti.pg.edu.pl/katedra-systemow-automatyki/strona-glowna
 
 Program umożliwia wykonanie symulacji wybranych funkcji sztucznego potencjału z dowolnymi parametrami.
 
-![Logo of KSA](https://raw.githubusercontent.com/locmark/af/master/simulation.png)
+![simulation](https://raw.githubusercontent.com/locmark/af/master/simulation.png)
 
 ## Autorzy
 Karol Kraczyna oraz Marcin Łyda
