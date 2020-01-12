@@ -272,7 +272,7 @@ function DrawTrajectory() {
 function DrawRobot() {
     ctx.beginPath();
     ctx.arc(robot.pos.x, robot.pos.y, robot.radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = "rgba(180, 0, 0, 0.7)";
     ctx.fill();
     ctx.lineWidth = 5;
     ctx.strokeStyle = '#330000';
@@ -282,7 +282,7 @@ function DrawRobot() {
 function DrawDestination() {
     ctx.beginPath();
     ctx.arc(destination.pos.x, destination.pos.y, destination.radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = "rgba(0, 0, 180, 0.7)";
     ctx.fill();
     ctx.lineWidth = 5;
     ctx.strokeStyle = '#000033';
@@ -293,7 +293,7 @@ function DrawObstacles() {
     obstacles.forEach(obstacle => {
         ctx.beginPath();
         ctx.arc(obstacle.pos.x, obstacle.pos.y, obstacle.radius, 0, 2 * Math.PI, false);
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = "rgba(0, 180, 0, 0.7)";
         ctx.fill();
         ctx.lineWidth = 5;
         ctx.strokeStyle = '#003300';
