@@ -405,7 +405,6 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         ];
     })
-    
 
     $('#trajectory_reset').click(()=>{
         trajectory = [
@@ -423,6 +422,7 @@ document.addEventListener("DOMContentLoaded", function(){
     $('#obstacleGain')[0].value = obstacleGain;
     $('#destGain')[0].value = destGain;
     $('#wallGain')[0].value = wallGain;
+    $('#obstaclesNumber')[0].value = obstacles.length;
 
     for (let i = 0; i < potentials.length; i++) {
         $('#obstacleField').append(`<option value=${i} ${(i==0)?"selected":""}>${potentials[i].name}</option>`);
@@ -444,5 +444,41 @@ document.addEventListener("DOMContentLoaded", function(){
         let val = $('#wallField')[0].value;
         wallPotential = potentials[val];
     })
+
+    $('#obstaclesNumber').change(()=>{
+        let val = $('#obstaclesNumber')[0].value;
+        ChangeObstaclesNumber(val);
+    })
+
+    $('#obstaclesReset').click(()=>{
+        ResetObstacles();
+    })
 });
 
+function ChangeObstaclesNumber(number) {
+    let actualNumber = obstacles.length;
+    if (actualNumber > number) { //remove some obstacles
+        for (let index = 0; index < actualNumber - number; index++) {
+            obstacles.pop();
+        }
+    }
+
+    if (actualNumber < number) { //add some obstacles
+        for (let index = 0; index < number - actualNumber; index++) {
+            obstacles.push({
+                pos : {x : RandInInterval(100, c.width - 100), y : RandInInterval(100, c.height - 100)},
+                radius : 20,
+                strength : 200,
+                speed : {x : 0, y : 0},
+                moveable : true
+            })
+        }
+    }
+    
+}
+
+function ResetObstacles () {
+    obstacles.forEach(obstacle => {
+        obstacle.pos = {x : RandInInterval(100, c.width - 100), y : RandInInterval(100, c.height - 100)};
+    });
+}
