@@ -53,7 +53,7 @@ let potentials = [
         }
     },
     {
-        name: "harmoniczny",
+        name: "logarytmiczny",
         calc: (r2)=>{
             return -Math.log(r2) / 2;
         },
