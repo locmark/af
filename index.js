@@ -326,14 +326,14 @@ function DrawField(ctx, maxX, maxY) {
                 let color = field[x][y];
                 color = (color - mean) / (dev*3);
                 // console.log(color);
-                
-                color *= 255/2;
-                color += 255/2;
+                const maxValue = 255 * 3;
+                color *= maxValue/2;
+                color += maxValue/2;
                 // console.log(color);
                 
-                let r = color;
                 let g = color;
-                let b = color;
+                let r = color - 255;
+                let b = color - 255*2;
                 let a = 255;
     
                 ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
