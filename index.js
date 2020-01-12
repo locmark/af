@@ -24,8 +24,8 @@ let trajectory = [
 let potentials = [
     {
         name: "odwrotność odległości",
-        calc: (r)=>{
-            return 1/r;
+        calc: (r2)=>{
+            return 1/Math.sqrt(r2);
         },
         defaultGains:{
             dest: -0.1,
@@ -34,8 +34,8 @@ let potentials = [
     },
     {
         name: "stożkowy",
-        calc: (r)=>{
-            return r;
+        calc: (r2)=>{
+            return Math.sqrt(r2);
         },
         defaultGains:{
             dest: -0.1,
@@ -44,8 +44,8 @@ let potentials = [
     },
     {
         name: "paraboidalny",
-        calc: (r)=>{
-            return r*r;
+        calc: (r2)=>{
+            return r2;
         },
         defaultGains:{
             dest: -0.1,
@@ -54,8 +54,8 @@ let potentials = [
     },
     {
         name: "harmoniczny",
-        calc: (r)=>{
-            return -Math.log(r);
+        calc: (r2)=>{
+            return -Math.log(r2) / 2;
         },
         defaultGains:{
             dest: 0.7,
@@ -221,14 +221,14 @@ let destGain = -0.1;
 function GetFieldValue(x, y) {
     let intensivity = 0.0;
     obstacles.forEach(obstacle => {
-        let r = Math.sqrt((obstacle.pos.x - x)*(obstacle.pos.x - x) + (obstacle.pos.y - y)*(obstacle.pos.y - y)) - obstacle.radius;
-        if (r<1)
-            r = 1;
-        intensivity += obstacleGain * obstaclePotential.calc(r);
+        let r2 = (obstacle.pos.x - x)*(obstacle.pos.x - x) + (obstacle.pos.y - y)*(obstacle.pos.y - y) - obstacle.radius * obstacle.radius;
+        if (r2<1)
+            r2 = 1;
+        intensivity += obstacleGain * obstaclePotential.calc(r2);
     });
 
-    let rr = Math.sqrt((destination.pos.x - x)*(destination.pos.x - x) + (destination.pos.y - y)*(destination.pos.y - y));
-    intensivity -= destGain * robotPotential.calc(rr);
+    let rr2 = (destination.pos.x - x)*(destination.pos.x - x) + (destination.pos.y - y)*(destination.pos.y - y);
+    intensivity -= destGain * robotPotential.calc(rr2);
 
     // walls potential
     const wallGain = 3;
