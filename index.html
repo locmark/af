@@ -1,0 +1,51 @@
+<html>
+    <title>Artificial Field Path Planning</title>
+    <script src="jquery.js"></script>
+    <body>
+        <canvas width="1400" height="800"  id="canvas" style="border:1px solid #000000;"></canvas>
+        <div style="float: left;">
+            <table>
+                <tbody>
+                <tr>
+                <td>Przeszkody</td>
+                <td>Cel</td>
+                </tr>
+                <tr>
+                <td>typ funkcji</td>
+                <td>typ funkcji</td>
+                </tr>
+                <tr>
+                <td>
+                    <select id="obstacleField">
+                        <!-- <option value="1">1/r</option> -->
+                    </select>
+                </td>
+                <td>
+                    <select id="robotField">
+                        <!-- <option value="1">r</option> -->
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                <td>wzmocnienie</td>
+                <td>wzmocnienie</td>
+                </tr>
+                <tr>
+                <td><input type="text" value="1" id="obstacleGain"></td>
+                <td><input type="text" value="1" id="destGain"></td>
+                </tr>
+                </tbody>
+                </table>
+        </div>
+        <div style="display: inline;">
+            <br>
+            <button id="robot_reset">Reset robota</button>
+            <button id="trajectory_reset">Reset śladu</button>
+            <br>
+            <label for="map_gain">jasność tła</label> <input type="text" value="100" id="map_gain">
+            <input type="checkbox" id="show_map" value="1" checked>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
