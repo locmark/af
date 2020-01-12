@@ -82,6 +82,34 @@ for (let i = 0; i < 50; i++) {
     })
 }
 
+for (let i = 0; i < 8; i++) {
+    obstacles.push({
+        pos : {x : 700, y : 300 + 30*i},
+        radius : 20,
+        strength : 200,
+        speed : {x : 0, y : 0},
+        moveable : false
+    })
+}
+for (let i = 0; i < 5; i++) {
+    obstacles.push({
+        pos : {x : 700 - 20*i, y : 300},
+        radius : 20,
+        strength : 200,
+        speed : {x : 0, y : 0},
+        moveable : false
+    })
+}
+for (let i = 0; i < 5; i++) {
+    obstacles.push({
+        pos : {x : 700 - 20*i, y : 510},
+        radius : 20,
+        strength : 200,
+        speed : {x : 0, y : 0},
+        moveable : false
+    })
+}
+
 // wals
 // for (let i = 0; i < 10; i++) {
 //     obstacles.push({

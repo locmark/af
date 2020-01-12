@@ -1,7 +1,7 @@
 harmoniczny
-3, 180, 8
+1, 260, 10
 
-odwrotnoœæ odleg³oœci, sto¿kowy, typ sto¿kowy
+odwrotnoœæ odleg³oœci, sto¿kowy, sto¿kowy
 80, -0.1, 3
 
 odwrotnoœæ odleg³oœci, paraboloidalny, sto¿kowy
